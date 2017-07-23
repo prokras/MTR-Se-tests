@@ -19,3 +19,17 @@ browser.save_screenshot('shot.png')
 browser.get_screenshot_as_file('as_file.png')
 print(browser.title)
 browser.quit()
+
+class HttpStatusCodesTest(unittest.TestCase):
+
+    def setUp(self):
+        pass
+
+    def test(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+if __name__ == '__main__':
+    unittest.main()
