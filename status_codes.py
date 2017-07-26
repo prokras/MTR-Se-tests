@@ -1,17 +1,15 @@
 import requests
 import unittest
+import props
+
+# Test status Codes of ulrs
 
 class HttpStatusCodesTest(unittest.TestCase):
 
     def setUp(self):
         # open file with ulrs
         self.base_url = 'http://magentofinal.mytriorings.com/'
-        self.paths = [
-            'about',
-            'services',
-            'layaway-plan',
-            'fake_path'
-        ]
+        self.paths = props.url_for_test
         self.broken_paths = []
 
     def test(self):
@@ -23,7 +21,7 @@ class HttpStatusCodesTest(unittest.TestCase):
             try:
                 self.assertEqual(200, r.status_code)
             except AssertionError as e:
-                error_msg = " -- Not Found-- {}".format(e)
+                error_msg = " -- ERR-- {}".format(e)
                 has_broken_urls = True
                 self.broken_paths.append(path)
             print("{} - {}{}".format(r.status_code, path, error_msg))
