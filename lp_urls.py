@@ -10,12 +10,15 @@ class LandingPagesUrlsTest(unittest.TestCase):
         if link_href.find('#') == len(link_href)-1:
             return True
 
+    def get_browser(self):
+        chrome_path = r'C:\bin\selenium\chromedriver230.exe'
+        driver = webdriver.Firefox()
+        return driver
 
     def setUp(self):
-        chrome_path = r'C:\bin\selenium\chromedriver230.exe'
-        self.base_url = "http://magentofinal.mytriorings.com/"
+        self.base_url = props.base_url
         self.paths = props.url_for_test
-        self.browser = webdriver.Chrome(chrome_path)
+        self.browser = self.get_browser()
 
     def test_page_ulrs_status(self):
         status_msg = ""
@@ -23,7 +26,7 @@ class LandingPagesUrlsTest(unittest.TestCase):
         for path in self.paths:
             url = self.base_url + path
             self.browser.get(url)
-            print(self.browser.title)
+            print("{} | {}".format(self.browser.title, path))
             main_container = self.browser.find_element_by_class_name("main-container")
             links = main_container.find_elements_by_tag_name("a")
             for link in links:

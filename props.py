@@ -1,3 +1,6 @@
+
+base_url = "http://magentofinal.mytriorings.com/"
+
 url_for_test = [
     'about',
     'services',
