@@ -47,7 +47,7 @@ class LandingPagesUrlsTest(unittest.TestCase):
                 except AssertionError as e:
                     status_msg = "ERROR - {}".format(e)
                     has_broken_urls = True
-                print("{} - {} | {} - {}".format(http_status, link_href, link_text, status_msg))
+                print("{} - {} | {} - {}".format(http_status, status_msg, link_href, link_text))
         self.assertFalse(has_broken_urls)
 
     def tearDown(self):
