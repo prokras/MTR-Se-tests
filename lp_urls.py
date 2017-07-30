@@ -10,11 +10,21 @@ class LandingPagesUrlsTest(unittest.TestCase):
         if link_href.find('#') == len(link_href)-1:
             return True
 
+    def get_browser(self):
+        chrome_path = r'C:\bin\selenium\chromedriver230.exe'
+        driver = webdriver.Firefox()
+        return driver
 
     def setUp(self):
+<<<<<<< HEAD
         self.base_url = "http://magentofinal.mytriorings.com/"
         self.paths = props.url_for_test
         self.browser = webdriver.Chrome(props.chrome_path)
+=======
+        self.base_url = props.base_url
+        self.paths = props.url_for_test
+        self.browser = self.get_browser()
+>>>>>>> cd30db1a2562de788d58a0b97b5be553c226b951
 
     def test_page_ulrs_status(self):
         status_msg = ""
@@ -22,7 +32,11 @@ class LandingPagesUrlsTest(unittest.TestCase):
         for path in self.paths:
             url = self.base_url + path
             self.browser.get(url)
+<<<<<<< HEAD
             print("\n >>> {}".format(self.browser.title))
+=======
+            print("{} | {}".format(self.browser.title, path))
+>>>>>>> cd30db1a2562de788d58a0b97b5be553c226b951
             main_container = self.browser.find_element_by_class_name("main-container")
             links = main_container.find_elements_by_tag_name("a")
             for link in links:
@@ -43,7 +57,11 @@ class LandingPagesUrlsTest(unittest.TestCase):
                 except AssertionError as e:
                     status_msg = "ERROR - {}".format(e)
                     has_broken_urls = True
+<<<<<<< HEAD
                 print("{} - {} | [ {} ] - {}".format(http_status, status_msg, link_text, link_href))
+=======
+                print("{} - {} | {} - {}".format(http_status, status_msg, link_href, link_text))
+>>>>>>> cd30db1a2562de788d58a0b97b5be553c226b951
         self.assertFalse(has_broken_urls)
 
     def tearDown(self):
