@@ -1,25 +1,19 @@
 import requests
 import sys
+import props
+from selenium import webdriver
+from openpyxl import Workbook
+from openpyxl import load_workbook
 
-if len(sys.argv[1]) > 1:
-    print(sys.argv[1])
-else:
-    raise
+wb = load_workbook('metadata.xlsx', data_only=True)
+print(wb.get_sheet_names())
+ws = wb.get_sheet_by_name('test_meta')
+print(ws.title)
+# print(tuple(ws.rows))
+for row in ws.iter_rows():
+    print(row[0].value)
 
-url = 'http://magentofinal.mytriorings.com/layaway-plan#'
-r = requests.get(url)
-print(r.status_code)
-print(url.find('#'))
-print(len(url)-1)
-
-
-
-status_msg = 'OK'
-link_href = '#'
-if url.find('#') == len(url)-1:
-    status_msg = 'TMEP'
-    print(status_msg)
-
-if url.find('#') < 0:
-    print(url.find('mailto:'))
-    print('ni ma')
+driver = webdriver.Chrome(props.chrome_path)
+driver.get("http://magentofinal.mytriorings.com")
+print(driver.title)
+driver.quit()
